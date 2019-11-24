@@ -62,4 +62,18 @@ public class ListUtilsTest {
         }
         assertTrue(caught);
     }
+
+    @Test
+    public void sortWithCloned() {
+        Comparator<String> comparator = Comparator.naturalOrder();
+        List<String> l1 = Arrays.asList("a", "c", "b");
+        List<String> l2 = ListUtils.sortWithCloned(l1, comparator);
+
+        // Make sure lists are of the same size
+        assertEquals(l1.size(), l2.size());
+
+        // Make sure that original list remains unsorted, and the copy is sorted
+        assertFalse(ListUtils.isSorted(l1, comparator));
+        assertTrue(ListUtils.isSorted(l2, comparator));
+    }
 }

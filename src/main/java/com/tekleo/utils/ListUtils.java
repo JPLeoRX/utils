@@ -1,5 +1,6 @@
 package com.tekleo.utils;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -50,5 +51,29 @@ public class ListUtils {
      */
     public static <O extends Comparable<? super O>> boolean isSorted(List<O> list) {
         return isSorted(list, Comparator.naturalOrder());
+    }
+
+    /**
+     * Simple wrapper around default sort method. Sorts original list, and returns it.
+     * @param list list to sort
+     * @param comparator comparator
+     * @param <O> any generic type
+     * @return sorted original list
+     */
+    public static <O> List<O> sort(List<O> list, Comparator<O> comparator) {
+        list.sort(comparator);
+        return list;
+    }
+
+    /**
+     * Simple wrapper around default sort method. Clones the original list, and then sorts on cloned version.
+     * @param list list to sort
+     * @param comparator comparator
+     * @param <O> any generic type
+     * @return sorted copy of original list
+     */
+    public static <O> List<O> sortWithCloned(List<O> list, Comparator<O> comparator) {
+        ArrayList<O> cloned = new ArrayList<>(list);
+        return sort(cloned, comparator);
     }
 }
