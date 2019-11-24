@@ -43,5 +43,23 @@ public class ListUtilsTest {
         assertFalse(ListUtils.isSorted(l4, reversed));
         assertFalse(ListUtils.isSorted(l5, reversed));
         assertTrue(ListUtils.isSorted(l6, reversed));
+
+        // Make sure that null list throws an exception
+        boolean caught = false;
+        try {
+            ListUtils.isSorted(null, comparator);
+        } catch (Exception e) {
+            caught = true;
+        }
+        assertTrue(caught);
+
+        // Make sure that null comparator throws an exception
+        caught = false;
+        try {
+            ListUtils.isSorted(l6, null);
+        } catch (Exception e) {
+            caught = true;
+        }
+        assertTrue(caught);
     }
 }
