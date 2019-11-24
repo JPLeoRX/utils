@@ -76,4 +76,28 @@ public class ListUtils {
         ArrayList<O> cloned = new ArrayList<>(list);
         return sort(cloned, comparator);
     }
+
+    /**
+     * Simple wrapper around default removeAll method. Excludes elements from original list, and returns it.
+     * @param list list to exclude elements from
+     * @param toRemove elements to be excluded
+     * @param <O> any generic type
+     * @return original list, with elements removed from it
+     */
+    public static <O> List<O> exclude(List<O> list, List<O> toRemove) {
+        list.removeAll(toRemove);
+        return list;
+    }
+
+    /**
+     * Simple wrapper around default removeAll method. Clones the original list, and then excludes elements from the cloned version.
+     * @param list list to exclude elements from
+     * @param toRemove elements to be excluded
+     * @param <O> any generic type
+     * @return copy of original list, with elements removed from it
+     */
+    public static <O> List<O> excludeWithCloned(List<O> list, List<O> toRemove) {
+        ArrayList<O> cloned = new ArrayList<>(list);
+        return exclude(cloned, toRemove);
+    }
 }
